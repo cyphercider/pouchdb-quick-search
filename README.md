@@ -1,7 +1,10 @@
-PouchDB Quick Search
-=====
+# PouchDB Fulltext Search
 
-[![Build Status](https://travis-ci.org/nolanlawson/pouchdb-quick-search.svg)](https://travis-ci.org/nolanlawson/pouchdb-quick-search)
+A fork of [pouchdb-quick-search](https://github.com/pouchdb-community/pouchdb-quick-search) refactored to typescript, and with a modification to allow searching fragments of words instead of only full words.  Useful for autocomplete.
+
+This fork is provided as-is and will not be under active maintenance.
+
+=====
 
 ```js
 var pouch = new PouchDB('mydb');
@@ -639,3 +642,6 @@ This will run the tests automatically and the process will exit with a 0 or a 1 
 
 [lunr]: https://github.com/olivernn/lunr.js
 
+# todos
+
+1. implement frontend logging
