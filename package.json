@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://github.com/cyphercider/pouchdb-fulltext-search"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "pouch",
     "pouchdb",
