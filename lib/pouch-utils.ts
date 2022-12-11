@@ -1,5 +1,7 @@
 "use strict"
 
+const libmd5 = require("md5.js")
+
 /* istanbul ignore next */
 export function once(fun) {
   let called = false
@@ -81,14 +83,9 @@ export function toPromise(func) {
 
 exports.Promise = Promise
 
-const crypto = require("crypto")
-const md5 = require("md5-jkmyers")
-
-export function MD5(string) {
-  if ((process as any).browser) {
-    return md5(string)
-  }
-  return crypto.createHash("md5").update(string).digest("hex")
+export function MD5(str: string) {
+  // TODO - check on this and make sure it's performing as needed
+  return new libmd5().update(str).digest("hex")
 }
 
 exports.extend = require("pouchdb-extend")

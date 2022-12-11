@@ -11,7 +11,6 @@ import {
   promisedCallback,
 } from "pouchdb-mapreduce-utils"
 import Promise from "pouchdb-promise"
-import inherits from "inherits"
 import { queryPromised } from "./queryPromised"
 import { localViewCleanup } from "./localViewCleanup"
 import { queryViewInQueue } from "./queryViewInQueue"
@@ -384,41 +383,32 @@ function _search_query(fun, opts, callback) {
   return promise
 }
 
-function QueryParseError(message) {
-  this.status = 400
-  this.name = "query_parse_error"
-  this.message = message
-  this.error = true
-  try {
-    Error.captureStackTrace(this, QueryParseError)
-  } catch (e) {}
+export class QueryParseError extends Error {
+  status = 400
+  name = "query_parse_error"
+  error = true
+  constructor(public message: string) {
+    super(`QueryParseError: ${message}`)
+  }
 }
 
-inherits(QueryParseError, Error)
-
-export function NotFoundError(message) {
-  this.status = 404
-  this.name = "not_found"
-  this.message = message
-  this.error = true
-  try {
-    Error.captureStackTrace(this, NotFoundError)
-  } catch (e) {}
+export class NotFoundError extends Error {
+  status = 404
+  name = "not_found_error"
+  error = true
+  constructor(public message: string) {
+    super(`NotFoundError: ${message}`)
+  }
 }
 
-inherits(NotFoundError, Error)
-
-export function BuiltInError(message) {
-  this.status = 500
-  this.name = "invalid_value"
-  this.message = message
-  this.error = true
-  try {
-    Error.captureStackTrace(this, BuiltInError)
-  } catch (e) {}
+export class BuiltInError extends Error {
+  status = 500
+  name = "invalid_value"
+  error = true
+  constructor(public message: string) {
+    super(`NotFoundError: ${message}`)
+  }
 }
-
-inherits(BuiltInError, Error)
 
 export default {
   _search_query: _search_query,
