@@ -1,6 +1,6 @@
 {
   "name": "@cyphercider/pouchdb-fulltext-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PouchDB Quick Search - persisted full-text search for PouchDB",
   "main": "dist/index.js",
   "repository": {
