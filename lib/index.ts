@@ -1,26 +1,22 @@
 "use strict"
+import stringify from "json-stable-stringify"
+import lunr from "lunr"
+import extend from "pouchdb-extend"
+import uniq from "uniq"
+
+import mapReduce from "./pouchdb-mapreduce-no-ddocs"
+import { QueryOpts, SearchOptions } from "./types"
 
 // Use a fork of pouchdb-mapreduce, which allows us
 // deeper control over what's persisted, without needing ddocs
 
 // const mapReduce = require("pouchdb-mapreduce-no-ddocs")
 
-import mapReduce from "./pouchdb-mapreduce-no-ddocs"
-
 Object.keys(mapReduce).forEach(function (key) {
   exports[key] = mapReduce[key]
 })
 
 const utils = require("./pouch-utils")
-import lunr from "lunr"
-import { Token } from "lunr"
-import uniq from "uniq"
-import stringify from "json-stable-stringify"
-import extend from "pouchdb-extend"
-import { QueryOpts, SearchOptions } from "./types"
-import _, { flowRight, methodOf } from "lodash"
-import { tokenizer } from "./lunr/tokenizer"
-
 const indexes = {}
 
 const TYPE_TOKEN_COUNT = "a"
@@ -172,6 +168,7 @@ export interface BulkDocsAny {
   bulkDocs: any
 }
 
+// Main search function
 export const search = utils.toPromise(function (opts: SearchOptions, callback) {
   if (!opts.query) return []
 

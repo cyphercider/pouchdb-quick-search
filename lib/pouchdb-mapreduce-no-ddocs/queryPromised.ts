@@ -9,14 +9,8 @@ import {
   parseViewName,
   NotFoundError,
 } from "./index"
-import { httpQuery } from "./httpQuery"
 
-// TODO - see where the 2nd param (fun) is coming from
 export function queryPromised(db, fun, opts) {
-  if (db.type() === "http") {
-    return httpQuery(db, fun, opts)
-  }
-
   /* istanbul ignore next */
   if (typeof db._query === "function") {
     return customQuery(db, fun, opts)

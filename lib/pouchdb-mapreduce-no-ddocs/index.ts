@@ -349,9 +349,6 @@ function httpViewCleanup(db) {
 
 const viewCleanup = callbackify(function () {
   const db = this
-  if (db.type() === "http") {
-    return httpViewCleanup(db)
-  }
   /* istanbul ignore next */
   if (typeof db._viewCleanup === "function") {
     return customViewCleanup(db)
